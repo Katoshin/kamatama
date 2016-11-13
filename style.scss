@@ -1,0 +1,1208 @@
+/*
+Theme Name: KAMATAMA URI: http://www.osakanaworks.com
+Description: KAMATAMAのテーマ
+Version: 1.0
+Author: Shinya Kato
+Author URI:
+*/
+/*-----------------------------------------------------------
+  リセット
+-----------------------------------------------------------*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+ul,li{
+  list-style: none;
+}
+nav ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+/*-----------------------------------------------------------
+  メディアクエリー
+-----------------------------------------------------------*/
+$breakpoints: (
+  'sp': 'screen and (max-width: 767px)',
+  'tb': 'screen and (min-width: 768px) and (max-width: 1019px)',
+  'sptb': 'screen and (max-width: 1019px)',
+  'pc': 'screen and (min-width: 1020px)',
+) !default;
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/*-----------------------------------------------------------
+  セット
+-----------------------------------------------------------*/
+.visible--pc{
+  @include mq(sp) {
+    display: none;
+  }
+  @include mq(tb) {
+    display: none;
+  }
+  @include mq(pc) {
+    font-size: 17px;
+  }
+}
+.hidden--sp{
+  @include mq(sp) {
+    display: none;
+  }
+  @include mq(tb) {
+    display: block;
+  }
+  @include mq(pc) {
+    display: block;
+  }
+}
+/*-----------------------------------------------------------
+  ベース設定
+-----------------------------------------------------------*/
+html{
+	font-family:'Lucida Grande',
+	 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
+	  Meiryo, メイリオ, sans-serif;
+	text-align: left;
+	color: #444;
+	line-height: 1.6;
+	box-sizing: border-box;
+  @include mq(sp) {
+    font-size: 16px;
+  }
+  @include mq(tb) {
+    font-size: 16px;
+  }
+  @include mq(pc) {
+    font-size: 17px;
+  }
+	a{
+		text-decoration: none;
+		color: #444;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+body{
+  @include mq(sptb) {
+    margin-top: 57px;
+  }
+}
+.container {
+  margin: 0 auto;
+	height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  @include mq(sp) {
+    width: 100%;
+    padding: 0px 16px;
+  }
+  @include mq(tb) {
+    width: 100%;
+    padding: 0px 16px;
+  }
+  @include mq(pc) {
+    width: 1020px;
+    padding: 0;
+  }
+  &--pc{
+    margin: 0 auto;
+  	height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    @include mq(sp) {
+    }
+    @include mq(tb) {
+    }
+    @include mq(pc) {
+      margin: 0 auto;
+    	height: 100%;
+      box-sizing: border-box;
+      position: relative;
+      width: 1020px;
+      padding: 0;
+    }
+  }
+  &--sptb{
+    @include mq(sptb) {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      padding: 0px 16px;
+    }
+    @include mq(pc) {
+    }
+  }
+}
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border-top-left-radius($radius) {
+  -webkit-border-top-left-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  border-top-left-radius: $radius;
+}
+@mixin border-top-right-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-right-radius: $radius;
+}
+@mixin border-bottom-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  border-bottom-right-radius: $radius;
+}
+@mixin border-bottom-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-left-radius: $radius;
+}
+@mixin head--sptb{
+  display: block;
+  width: 100%;
+  background: #333;
+  color: white;
+  padding: 8px;
+  box-sizing: border-box;
+}
+@mixin item--sptb {
+  display: block;
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 8px 0px
+}
+@mixin item__img--spdb{
+  float: left;
+  display: block;
+  margin-right: 16px;
+  width: 84px;
+  height: 63px;
+}
+@mixin item__title--sptb {
+  display: block;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.boxLink{
+  width: 100%;
+  height: 100%;
+  display: block;
+  &:hover{
+    text-decoration: none;
+  }
+  &:hover>img{
+    @include opacity(0.7);
+  }
+}
+/*-----------------------------------------------------------
+  ヘッダー
+-----------------------------------------------------------*/
+.header{
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 6px solid #333;
+  border-bottom: 1px solid #e1e1e1;
+  @include mq(pc) {
+    height: 68px;
+  }
+  @include mq(sptb) {
+    height: 56px;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    position: fixed;
+    padding-top: 0;
+    background: transparent;
+  }
+  &.fixed {
+      margin-top: 0;
+      top: 0;
+      position: fixed;
+      padding-top: 10px;
+      height: 56px;
+      background: #fff;
+      background: rgba(255,255,255,.7);
+      transition: top 0.65s ease-in;
+      -webkit-transition: top 0.65s ease-in;
+      -moz-transition: top 0.65s ease-in;
+  }
+  &__titleArea{
+    display: block;
+    @include mq(pc) {
+      float: left;
+      margin-top: 2px;
+    }
+    @include mq(sptb) {
+      text-align: center;
+      width:80%;
+      color: #333;
+      margin: 0 auto;
+    }
+  }
+  &__title{
+    line-height:1;
+
+    @include mq(sptb) {
+      text-align: center;
+      font-size: 1.8em;
+    }
+    @include mq(pc) {
+      float: left;
+      clear: both;
+      font-size: 1.6em;
+    }
+    & a:hover{
+      text-decoration: none;
+    }
+  }
+  &__copy{
+    @include mq(sptb) {
+      margin: 8px 0 6px 0;
+      font-size: 0.7em;
+      width: 100%;
+      float: left;
+    }
+    @include mq(pc) {
+      margin-top: 14px;
+      float: left;
+      line-height: 14px;
+      margin-top: 8px;
+      font-size: 0.8em;
+    }
+  }
+}
+.nav{
+  @include mq(sp) {
+
+  }
+  @include mq(tb) {
+
+  }
+  @include mq(pc) {
+
+  }
+  &__list{
+    @include mq(sp) {
+
+    }
+    @include mq(tb) {
+
+    }
+    @include mq(pc) {
+      float: right;
+      display: flex;
+    }
+  }
+  &__item{
+    @include mq(sp) {
+
+    }
+    @include mq(tb) {
+
+    }
+    @include mq(pc) {
+      margin: 22px 0px;
+      padding: 0px 18px;
+      -webkit-flex-direction: row; /* Safari */
+      flex-direction:         row;
+      border-left: 1px solid #999;
+      line-height: 20px;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.inner {
+  position: relative;
+  width: 1020px;
+  margin: 0 auto;
+}
+.inner:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+/* header */
+#top-head .inner {
+    position: relative;
+}
+/* Toggle Button */
+#nav-toggle {
+    display: none;
+    position: absolute;
+    right: 12px;
+    top: 14px;
+    width: 34px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 101;
+}
+#nav-toggle div {
+    position: relative;
+}
+@include mq(sptb) {
+  /* Fixed */
+  #top-head,.inner {
+    width: 100%;
+    padding: 0;
+  }
+  #mobile-head {
+    background: #fff;
+    width: 100%;
+    height: 56px;
+    z-index: 9999;
+    position: relative;
+  }
+  #global-nav {
+    position: absolute;
+    /* 開いてないときは画面外に配置 */
+    top: -500px;
+    background: #333;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+  #global-nav ul {
+    list-style: none;
+    position: static;
+    right: 0;
+    bottom: 0;
+    font-size: 1em;
+  }
+  #global-nav ul li {
+    float: none;
+    position: static;
+  }
+  #top-head #global-nav ul li a,
+  #top-head.fixed #global-nav ul li a {
+    width: 100%;
+    display: block;
+    color:#fff;
+    padding: 18px 0;
+  }
+  #nav-toggle {
+    display: block;
+  }
+  #nav-toggle span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: #666;
+      left: 0;
+      -webkit-transition: .35s ease-in-out;
+      -moz-transition: .35s ease-in-out;
+      transition: .35s ease-in-out;
+  }
+  #nav-toggle span:nth-child(1) {
+      top: 0;
+  }
+  #nav-toggle span:nth-child(2) {
+      top: 11px;
+  }
+  #nav-toggle span:nth-child(3) {
+      top: 22px;
+  }
+  /* #nav-toggle 切り替えアニメーション */
+  .open #nav-toggle span:nth-child(1) {
+    top: 11px;
+    -webkit-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    transform: rotate(315deg);
+  }
+  .open #nav-toggle span:nth-child(2) {
+    width: 0;
+    left: 50%;
+  }
+  .open #nav-toggle span:nth-child(3) {
+    top: 11px;
+    -webkit-transform: rotate(-315deg);
+    -moz-transform: rotate(-315deg);
+    transform: rotate(-315deg);
+  }
+  /* #global-nav スライドアニメーション */
+  .open #global-nav {
+    /* #global-nav top + #mobile-head height */
+    -moz-transform: translateY(556px);
+    -webkit-transform: translateY(556px);
+    transform: translateY(556px);
+  }
+}
+
+/*-----------------------------------------------------------
+  パンくず
+-----------------------------------------------------------*/
+.breadcrumb{
+  @include mq(pc){
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+  }
+  @include mq(sptb){
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+  }
+  &__list{
+    width: 100%;
+    float: left;
+  }
+  &__item{
+    font-size: 0.8em;
+    display: block;
+    padding: 0 8px;
+    float: left;
+    line-height: 1;
+  }
+}
+/*-----------------------------------------------------------
+  記事
+-----------------------------------------------------------*/
+.article{
+  @include mq(sptb) {
+    margin-bottom: 28px;
+    padding: 0 16px;
+  }
+  @include mq(pc) {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #e1e1e1;
+    padding: 19px;
+    float: left;
+  }
+  &__title{
+    font-size: 2em;
+    line-height: 1.5;
+    float: left;
+    display: block;
+  }
+  &__content{
+    display: block;
+    float: left;
+    @include mq(sptb){
+
+    }
+    @include mq(pc){
+      margin-bottom: 24px;
+    }
+  }
+  & p{
+    @include mq(sptb) {
+      font-size: 1em;
+      line-height: 1.8;
+    }
+    @include mq(pc) {
+      font-size: 1em;
+      line-height: 1.8;
+      display: block;
+      float: left;
+    }
+  }
+  &__shareArea{
+    display: block;
+    float: left;
+    width: 100%;
+  }
+  &__share{
+    @include mq(pc){
+      display: block;
+      box-sizing: border-box;
+      margin: 8px 0px 24px ;
+      float: right;
+      width: 210px;
+      font-size: 0.8em;
+      text-align: center;
+      display: block;
+    }
+    @include mq(sptb){
+      font-size: 0.8em;
+      display: block;
+      box-sizing: border-box;
+      margin: 8px 0px 24px ;
+      float: right;
+      width: 120px;
+      font-size: 0.8em;
+      text-align: center;
+      display: block;
+    }
+    &:hover{
+      @include opacity(0.8);
+    }
+    &:hover{
+     text-decoration: none;
+     background-opacity : 0.6;
+    }
+    & a{
+      display: block;
+      color: white;
+      line-height: 36px;
+      padding-left: 36px;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    &--twitter{
+      background-color: #32a8e0;
+      & a{
+        background: url(./images/icon_social_twitter.png);
+        background-size: auto 20px;
+        background-repeat: no-repeat;
+        background-position: 21px 8px;
+        @include mq(sptb){
+          background-position: 14px 8px;
+        }
+      }
+    }
+    &--facebook{
+      background-color: #3a5795;
+      margin-left: 2%;
+      & a{
+        display: block;
+        background: url(./images/icon_social_facebook.png);
+        background-size: auto 22px;
+        background-repeat: no-repeat;
+        background-position: 38px 7px;
+        @include mq(sptb){
+          background-position: 20px 7px;
+        }
+      }
+    }
+  }
+  & img{
+    @include mq(sptb) {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 16px auto;
+      max-width: 640px;
+      text-align: center;
+    }
+    @include mq(pc) {
+      margin: 16px 0px;
+    }
+  }
+  & h2{
+    @include mq(sptb) {
+      display: block;
+      width: 100%;
+      float: left;
+      line-height: 1.4;
+      font-size: 1.6em;
+      margin: 12px 0px;
+      border-bottom: 3px solid #555;
+    }
+    @include mq(pc) {
+      display: block;
+      width: 100%;
+      float: left;
+      line-height: 1.4;
+      font-size: 1.6em;
+      margin: 18px 0px 12px 0;
+      border-bottom: 3px solid #555;
+    }
+  }
+  & h3{
+    @include mq(sptb) {
+      display: block;
+      width: 100%;
+      float: left;
+      line-height: 1.4;
+      font-size: 1.2em;
+      margin: 8px 0px;
+    }
+    @include mq(pc) {
+      display: block;
+      width: 100%;
+      float: left;
+      line-height: 1.4;
+      font-size: 1.2em;
+      margin: 18px 0px 12px 0;
+    }
+  }
+}
+/*-----------------------------------------------------------
+  フロントページピックアップ
+-----------------------------------------------------------*/
+.frontTop{
+  @include mq(pc) {
+    background: #F3F3F3;
+    padding: 20px 0px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+}
+.frontPickup{
+  display: flex;
+  width: 100%;
+  @include mq(sptb){
+    margin-bottom: 12px;
+  }
+  &__img{
+    width: 100%;
+    display: block;
+    float: left;
+    @include mq(sptb) {
+      width: 84px;
+      height: 61px;
+      margin-right: 8px;
+    }
+    @include mq(pc) {
+      width: 240px;
+      height: 180px;
+      margin-right: 0px;
+    }
+  }
+  &__title{
+    @include mq(sptb) {
+      @include item__title--sptb;
+    }
+    @include mq(pc) {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 8px;
+      line-height: 1.4;
+      font-size: 0.8em;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      color: white;
+      background: #333;
+      @include opacity(0.8);
+    }
+  }
+  @include mq(sptb) {
+    -webkit-flex-direction: column; /* Safari */
+    flex-direction:         column;
+  }
+  @include mq(pc) {
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction:         row;
+    -webkit-justify-content: space-between; /* Safari */
+    justify-content:         space-between;
+  }
+  &__item{
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    @include mq(sptb) {
+      width: 100%;
+      box-sizing: border-box;
+      &:first-child{
+        & .container--sptb{
+          padding: 0;
+          max-height: 500px;
+          overflow: hidden;
+        }
+        & img{
+          width: 100%;
+          height: auto;
+          padding: 0;
+        }
+        & span{
+          box-sizing: border-box;
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          margin: 0;
+          background: #333;
+          padding: 12px;
+          line-height: 1.4;
+          color: white;
+          z-index: 9999;
+          @include opacity(0.8);
+        }
+      }
+      &:nth-child(2),&:nth-child(3),&:nth-child(4){
+        @include item--sptb;
+      }
+    }
+    @include mq(pc) {
+      padding: 0px;
+      width: 240px;
+    }
+  }
+}
+/*-----------------------------------------------------------
+  ラッパー
+-----------------------------------------------------------*/
+.wrapper{
+  display: flex;
+  @include mq(sp) {
+    -webkit-flex-direction: column; /* Safari */
+    flex-direction:         column;
+  }
+  @include mq(tb) {
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction:         row;
+    -webkit-flex-wrap: wrap; /* Safari */
+    flex-wrap:         wrap;
+    -webkit-justify-content: space-between; /* Safari */
+    justify-content:         space-between;
+  }
+  @include mq(pc) {
+    -webkit-flex-wrap: wrap; /* Safari */
+    flex-wrap:         wrap;
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction:         row;
+
+  }
+}
+/*-----------------------------------------------------------
+  コンテンツエリア
+-----------------------------------------------------------*/
+.content{
+  display: block;
+  @include mq(sptb) {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  @include mq(pc) {
+    width: 680px;
+  }
+}
+/*-----------------------------------------------------------
+  アーカイブ
+-----------------------------------------------------------*/
+.archive{
+  &__head{
+    @include mq(sptb) {
+      @include head--sptb;
+    }
+    @include mq(pc) {
+      width: 100%;
+      display: block;
+      background: #333;
+      padding: 8px 16px;
+      box-sizing: border-box;
+      color: white;
+      @include border-radius(8px);
+      margin-bottom: 4px;
+    }
+  }
+  &__item{
+    @include mq(sptb) {
+      @include item--sptb;
+    }
+    @include mq(pc) {
+      display: block;
+      width: 100%;
+      float: left;
+      padding: 12px 0px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e1e1e1;
+    }
+  }
+  &__img{
+    @include mq(sptb) {
+      @include item__img--spdb;
+    }
+    @include mq(pc) {
+      float: left;
+      display: block;
+      margin-right: 16px;
+      width: 180px;
+      height: 135px;
+    }
+  }
+  &__title{
+    @include mq(sptb) {
+      @include item__title--sptb;
+    }
+    @include mq(pc) {
+      display: block;
+      font-size: 1.5em;
+      line-height: 1.6;
+    }
+  }
+  &__cat{
+    @include mq(sptb){
+    }
+    @include mq(pc){
+      color: #666;
+      padding: 2px 8px;
+      margin-top: 4px;
+      font-size: 0.8em;
+      border: 1px solid #999;
+      @include border-radius(4px);
+    }
+  }
+  &__date{
+    @include mq(sp) {}
+    @include mq(tb) {}
+    @include mq(pc) {
+      padding-top: 12px;
+      display: block;
+      font-size: 0.8em;
+      line-height: 1.6;
+      float: left;
+      width: 480px;
+      text-align: right;
+    }
+  }
+}
+/*-----------------------------------------------------------
+  サイドバー
+-----------------------------------------------------------*/
+.sidebar{
+  display: block;
+  @include mq(sp) {
+
+  }
+  @include mq(tb) {
+
+  }
+  @include mq(pc) {
+    width: 300px;
+    margin-left: 40px;
+
+  }
+}
+.sidebarContent{
+  display: block;
+  float: left;
+  width: 100%;
+  @include mq(sptb) {
+    margin-bottom: 24px;
+  }
+  @include mq(pc) {
+    margin-bottom: 20px;
+  }
+}
+.sidebarArticle{
+  @include mq(sp) {
+    display: block;
+    float: left;
+  }
+  @include mq(tb) {
+    display: block;
+    float: left;
+  }
+  @include mq(pc) {
+    display: block;
+    float: left;
+    border: solid 1px #e1e1e1;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  &__head{
+    @include mq(sptb) {
+      @include head--sptb;
+    }
+    @include mq(pc) {
+      box-sizing: border-box;
+      background: #333;
+      width: 100%;
+      display: block;
+      color: white;
+      padding: 8px 8px;
+      font-size: 0.8em;
+    }
+  }
+  &__list{
+    @include mq(sp) {
+
+    }
+    @include mq(tb) {
+
+    }
+    @include mq(pc) {
+      display: block;
+      float: left;
+    }
+  }
+  &__item{
+    @include mq(sptb) {
+      @include item--sptb;
+    }
+    @include mq(pc) {
+      box-sizing: border-box;
+      padding: 8px;
+      display: block;
+      float: left;
+      width: 100%;
+      clear: both;
+    }
+  }
+  &__img{
+    @include mq(sptb) {
+      @include item__img--spdb;
+    }
+    @include mq(pc) {
+      width: 84px;
+      height: 63px;
+      float: left;
+      display: block;
+      margin-right: 8px;
+    }
+  }
+  &__title{
+    @include mq(sptb) {
+      @include item__title--sptb;
+    }
+    @include mq(pc) {
+      font-size: 0.8em;
+      line-height: 1.4;
+      display: block;
+      float: left;
+      width: 180px;
+    }
+  }
+}
+
+/*-----------------------------------------------------------
+  フッター
+-----------------------------------------------------------*/
+.footer{
+  @include mq(sptb) {
+    float: left;
+    width:100%;
+    background: #444;
+    margin-top: 40px;
+  }
+  @include mq(pc) {
+    float: left;
+    width:100%;
+    background: #444;
+    margin-top: 72px;
+  }
+  &__copyright{
+    text-align: center;
+    color:white;
+    margin: 24px 0px 8px;
+    @include mq(sptb) {
+      font-size: 0.8em;
+      margin: 24px 0px 12px;
+    }
+  }
+}
+
+/************************************
+** レスポンシブページネーション
+************************************/
+.pagination{
+  list-style-type: none;
+  padding-left: 0;
+  margin: 30px 0;
+  width: 100%;
+  display: block;
+  margin-top: 24px;
+  float: left;
+}
+
+.pagination,
+.pagination li a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a {
+  font-weight: 300;
+  padding-top: 1px;
+  text-decoration:none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+  min-width:36px;
+  min-height:36px;
+  color: #333;
+}
+
+.pagination li:not([class*="current"]) a:hover {
+  background-color: #eee;
+}
+
+.pagination li:first-of-type a {
+  border-left-width: 1px;
+}
+
+.pagination li.first span,
+.pagination li.last span,
+.pagination li.previous span,
+.pagination li.next span {
+  /* screen readers only */
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.pagination li.first a::before,
+.pagination li.last a::after,
+.pagination li.previous a::before,
+.pagination li.next a::after {
+  display: inline-block;
+  font-family: Fontawesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+.pagination li.first a::before { content: '<<'; }
+.pagination li.last a::after { content: ">>"; }
+
+.pagination li.previous a::before { content: "<"; }
+.pagination li.next a::after { content: ">"; }
+
+.pagination li.current a {
+ background-color: #ddd;
+ cursor: default;
+ pointer-events: none;
+}
+
+.pagination > li:first-child > a {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.pagination > li:last-child > a {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+@media only screen and ( max-width: 680px ) {
+  .pagination li.first,
+  .pagination li.last {
+    /* screen readers only */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .pagination li.previous a { border-left-width: 1px; }
+}
+
+@media only screen and ( max-width: 500px ) {
+  .pagination li {
+    /* screen readers only */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .pagination li.current,
+  .pagination li.first,
+  .pagination li.last,
+  .pagination li.previous,
+  .pagination li.next{
+    position: initial;
+    top: initial;
+    left: initial;
+  }
+
+  .pagination li.previous a { border-left-width: 0; }
+}
+
+@media only screen and ( max-width: 400px ) {
+  .pagination li.first,
+  .pagination li.last {
+    /* screen readers only */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .pagination li.previous a { border-left-width: 1px; }
+}
+
+@media only screen and ( max-width: 240px ) { /* For watches? */
+  .pagination li { width: 50%;}
+
+  .pagination li.current {
+    order: 2;
+    width: 100%;
+    border-left-width: 1px;
+  }
+}

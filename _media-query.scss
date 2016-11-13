@@ -1,0 +1,64 @@
+/* #wrapper */
+#wrapper {
+    @if $type == all { //全端末共通
+        width: 100%;
+
+    } @else if $type==sp or $type==tab or $type==pc { //この内部はメディアクエリーで分岐
+
+        @if $type == sp or $type == tab { //スマホとタブレット
+            .sub-nav {
+                display: none;
+            }
+        }
+
+        @if $type == sp { //スマホ
+            color: #000000;
+
+        } @else if $type == tab { //タブレット
+            color: #CCCCCC;
+
+        } @else if $type == pc { //PC
+            color: #FFFFFF;
+        }
+    }
+}
+
+/* #container */
+#container {
+  @if $type == all {
+    margin: 0 auto;
+
+    .unit-pic {
+      float: right;
+    }
+
+  } @else if $type==sp or $type==tab or $type==pc {
+
+    @if $type == sp {
+      width: 95%;
+
+      .unit-pic {
+        width: 100px;
+
+        span {
+          display: block;
+          text-align: center;
+        }
+      }
+
+    } @else if $type == tab {
+      width: 90%;
+
+      .unit-pic {
+        width: 200px;
+      }
+
+    } @else if $type == pc {
+       width: 980px;
+
+      .unit-pic {
+        width: 300px;
+      }
+    }
+  }
+}
